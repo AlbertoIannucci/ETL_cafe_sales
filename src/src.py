@@ -84,8 +84,8 @@ def creazione_tabella():
         print(e)
         return None
 
-# Funzione per esportare i dati nel database (senza intestazione)
-def esporta_dati_db(df_sistemato):
+# Funzione per caricare i dati nel database (senza intestazione)
+def load_dati_db(df_sistemato):
     try:
         connection = getconnection()
         try:
@@ -158,5 +158,5 @@ modello = DatasetCleaner("../Dataset/dataset.csv")
 # Passo 15. Creo una tabella cafe_sales
 #creazione_tabella()
 # Passo 16. Load dei dati
-#esporta_dati_db(modello.dataframe_sistemato)
+#load_dati_db(modello.dataframe_sistemato)
 
