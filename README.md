@@ -20,3 +20,11 @@ Uno script Python completo per eseguire un processo ETL (Extract - Transform - L
 Il modulo principale è composto da:
 - `DatasetCleaner`: classe principale che eredita da `ModelloBase`, responsabile di tutta la logica di pulizia e trasformazione.
 - Funzioni standalone per la **connessione al database**, **creazione della tabella** e **inserimento dei dati**.
+
+## 🧪 Guida all'Uso
+
+Consulta il file 'USAGE' per un percorso dettagliato che ti accompagna passo-passo nell’utilizzo del progetto ETL per trasformare e caricare dati di vendita in un database MySQL.
+
+## 🔒 Licenza
+
+Distribuito sotto licenza MIT. Vedi il file `LICENSE` per maggiori dettagli.
