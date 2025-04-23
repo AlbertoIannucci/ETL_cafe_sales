@@ -37,7 +37,7 @@ class DatasetCleaner(ModelloBase):
         df_sistemato = df_sistemato.dropna(subset=["Transaction Date"])
         # Rimappatura etichette
         df_sistemato = df_sistemato.rename(columns={
-            "Transaction ID":"transacrion_id",
+            "Transaction ID":"transaction_id",
             "Item":"item",
             "Quantity":"quantity",
             "Price Per Unit": "price_per_unit",
