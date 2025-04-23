@@ -118,7 +118,7 @@ modello = DatasetCleaner("../Dataset/dataset.csv")
 # Passo 1. Analisi generali del dataset
 #modello.analisi_generali(modello.dataframe)
 # Risultati:
-# Osservazioni: 10000; Variabili: 8; Tipi: object; Valori nan: presenti
+# Osservazioni= 10000; Variabili= 8; Tipi= object; Valori nan= presenti
 # Passo 2. Analisi dei valori univoci
 #modello.analisi_valori_univoci(modello.dataframe, ["Transaction ID"])
 # Risultati:
@@ -137,25 +137,25 @@ modello = DatasetCleaner("../Dataset/dataset.csv")
 # modello.individuazione_outliers(modello.dataframe_sistemato, ["Transaction ID", "Item",
 #                                                               "Payment Method", "Location","Transaction Date"])
 # Risultato:
-# Quantity: 0%
-# Price Per Unit: 0%
-# Total Spent: 2.59%
+# Quantity= 0%
+# Price Per Unit= 0%
+# Total Spent= 2.59%
 # Passo 8. Sostituzione valori nan per le variabili quantitative
 # Strategia: sostiuisco i nan con la mediana
 # Passo 9. Analisi degli outliers post sostituzione
 # modello.individuazione_outliers(modello.dataframe_sistemato, ["Transaction ID", "Item",
 #                                                               "Payment Method", "Location","Transaction Date"])
 # Risultato:
-# Quantity: 0%
-# Price Per Unit: 0%
-# Total Spent: 2.59%
+# Quantity= 0%
+# Price Per Unit= 0%
+# Total Spent= 2.59%
 # Outliers non cresciuti e tutti sotto al 10/15%
 # Passo 10. Conversione Quantity da float a int
 # Passo 11. Conversione Transaction Date in formato data
 # Passo 12. Drop valori nan in Transaction Date in quanto sono al di sotto del 5%
 # Passo 13. Rimappatura etichette
 # Passo 14. Stabilisco la connesione con il database
-# Passo 15. Crea una tabella cafe_sales
+# Passo 15. Creo una tabella cafe_sales
 #creazione_tabella()
 # Passo 16. Load dei dati
 #esporta_dati_db(modello.dataframe_sistemato)
