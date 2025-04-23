@@ -66,7 +66,7 @@ def creazione_tabella():
         try:
             with connection.cursor() as cursor:
                 sql =("CREATE TABLE IF NOT EXISTS cafe_sales("
-                      "transacrion_id VARCHAR(30) PRIMARY KEY,"
+                      "transaction_id VARCHAR(30) PRIMARY KEY,"
                       "item VARCHAR(30) NOT NULL,"
                       "quantity INT NOT NULL,"
                       "price_per_unit FLOAT NOT NULL,"
@@ -93,12 +93,12 @@ def load_dati_db(df_sistemato):
                 for index, row in df_sistemato.iterrows():
                     # Preparazione della query di inserimento
                     sql = """
-                        INSERT INTO cafe_sales (transacrion_id, item, quantity, price_per_unit, total_spent, payment_method, location, transaction_date)
+                        INSERT INTO cafe_sales (transaction_id, item, quantity, price_per_unit, total_spent, payment_method, location, transaction_date)
                         VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                     """
                     # Inserimento dei dati nella tabella
                     cursor.execute(sql, (
-                        row['transacrion_id'],
+                        row['transaction_id'],
                         row['item'],
                         row['quantity'],
                         row['price_per_unit'],
