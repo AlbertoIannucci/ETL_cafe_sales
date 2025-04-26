@@ -13,28 +13,36 @@ class DatasetCleaner(ModelloBase):
     def sistemazione(self):
         # Copia del dataframe
         df_sistemato = self.dataframe.copy()
+        
         # Sostituzione nan camufatti
         df_sistemato = df_sistemato.replace("ERROR", np.nan).replace("UNKNOWN", np.nan)
+        
         # Sostituzione nan per variabili categoriali
         variabili_categoriali = ["Item", "Payment Method", "Location"]
         for col in df_sistemato.columns:
             if col in variabili_categoriali:
                 df_sistemato[col] = df_sistemato[col].fillna("Unknown")
+                
         # Conversione variabili quantitative
         variabili_quantitative = ["Quantity", "Price Per Unit", "Total Spent"]
         for col in df_sistemato.columns:
             if col in variabili_quantitative:
                 df_sistemato[col] = df_sistemato[col].astype(float)
+                
         # Sostituzione nan con mediana per le variabili quantitative
         for col in df_sistemato.columns:
             if col in variabili_quantitative:
                 df_sistemato[col] = df_sistemato[col].fillna(df_sistemato[col].median())
+                
         # Conversione Quantity
         df_sistemato["Quantity"] = df_sistemato["Quantity"].astype(int)
+        
         # Conversione Transaction Date
         df_sistemato["Transaction Date"] = pd.to_datetime(df_sistemato["Transaction Date"])
+        
         # Drop valori nan in Transaction Date
         df_sistemato = df_sistemato.dropna(subset=["Transaction Date"])
+        
         # Rimappatura etichette
         df_sistemato = df_sistemato.rename(columns={
             "Transaction ID":"transaction_id",
