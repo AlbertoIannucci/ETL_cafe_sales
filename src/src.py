@@ -98,14 +98,9 @@ def load_dati_db(df_sistemato):
         connection = getconnection()
         try:
             with connection.cursor() as cursor:
-                for index, row in df_sistemato.iterrows():
-                    # Preparazione della query di inserimento
-                    sql = """
-                        INSERT INTO cafe_sales (transaction_id, item, quantity, price_per_unit, total_spent, payment_method, location, transaction_date)
-                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-                    """
-                    # Inserimento dei dati nella tabella
-                    cursor.execute(sql, (
+                # Prepara una lista di tuple con i dati da inserire
+                values = [
+                    (
                         row['transaction_id'],
                         row['item'],
                         row['quantity'],
@@ -114,11 +109,22 @@ def load_dati_db(df_sistemato):
                         row['payment_method'],
                         row['location'],
                         row['transaction_date']
-                    ))
+                    )
+                    for _, row in df_sistemato.iterrows()
+                ]
+                
+                # SQL per l'inserimento dei dati
+                sql = """
+                INSERT INTO cafe_sales (transaction_id, item, quantity, price_per_unit, total_spent, payment_method, location, transaction_date)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                """
+                
+                # Esegui l'inserimento in batch con executemany
+                cursor.executemany(sql, values)
                 connection.commit()  # Salvataggio delle modifiche nel database
                 print("Dati esportati con successo.")
         finally:
-         connection.close()
+            connection.close()
     except Exception as e:
         print(f"Errore nell'esportazione dei dati: {e}")
 
